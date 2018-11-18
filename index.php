@@ -11,8 +11,8 @@
  * Text Domain: dro-alan-pizza
  */
 
-include plugin_dir_path(__FILE__) . 'includes/dro-posttype-pizza.php';
-include plugin_dir_path(__FILE__) . 'includes/dro-posttype-menu.php';
+include plugin_dir_path(__FILE__) . 'includes/dro_posttype_pizzas.php';
+include plugin_dir_path(__FILE__) . 'includes/dro_posttype_menus.php';
 include plugin_dir_path(__FILE__) . 'includes/class-dro-posttype.php';
 include plugin_dir_path(__FILE__) . 'includes/class-dro-taxonomies.php';
 include plugin_dir_path(__FILE__) . 'includes/class-dro-metaboxes.php';

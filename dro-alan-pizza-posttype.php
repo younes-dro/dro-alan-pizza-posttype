@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Plugin Name: DRO Post Type
  * Plugin URI: https://github.com/younes-dro/dro-posttype
@@ -36,6 +35,15 @@ add_action('init', function() {
      */
     $dro_taxonomies = new DRO_Taxonomies($taxonomies);
     $dro_taxonomies->create_taxanomies();
+
+    /**
+     * Create custom filed : price  for type_menu taxonomy 
+     */
+    add_action('type_menu_add_form_fields', 'dro_alan_pizza_taxonomy_add_custom_meta_field', 10, 2);
+    add_action('type_menu_edit_form_fields', 'dro_alan_pizza_taxonomy_edit_custom_meta_field', 10, 2);
+    add_action('edited_type_menu', 'dro_alan_pizza_save_taxonomy_custom_meta_field', 10, 2);
+    add_action('create_type_menu', 'dro_alan_pizza_save_taxonomy_custom_meta_field', 10, 2);
+
 
     /**
      * Add Custom Post Type columns for Pizza Screen Edit 
@@ -114,5 +122,49 @@ function dro_posttype_scripts($hook) {
             //js 
             wp_enqueue_script('dro-posttype-js', plugins_url('assets/js/dro-posttype-js.js', __FILE__), array('jquery'));
         }
+    }
+}
+
+/**
+ * Callback functions for Custom Field Price for type_menu taxonomy
+ */
+function dro_alan_pizza_taxonomy_add_custom_meta_field() {
+    ?>
+    <div class="form-field">
+        <label for="term_meta[type_menu_price]"><?php _e('Prix', 'dro-alan-pizza'); ?></label>
+        <input type="text" name="term_meta[type_menu_price]" id="term_meta[type_menu_price]" value="">
+        <p class="description"><?php _e('Si le groupe de menus a un prix uni(ex: Spécial Medi 7 euro)', 'dro-alan-pizza'); ?></p>
+    </div>
+    <?php
+}
+
+function dro_alan_pizza_taxonomy_edit_custom_meta_field($term) {
+
+    $t_id = $term->term_id;
+    $term_meta = get_option("taxonomy_$t_id");
+    ?>
+    <tr class="form-field">
+        <th scope="row" valign="top"><label for="term_meta[type_menu_price]"><?php _e('Prix', 'dro-alan-pizza'); ?></label></th>
+        <td>
+            <input type="text" name="term_meta[type_menu_price]" id="term_meta[type_menu_price]" value="<?php echo esc_attr($term_meta['type_menu_price']) ? esc_attr($term_meta['type_menu_price']) : ''; ?>">
+            <p class="description"><?php _e('Si le groupe de menus a un prix uni(ex: Spécial Medi 7 euro)', 'dro-alan-pizza'); ?></p>
+        </td>
+    </tr>
+    <?php
+}
+
+function dro_alan_pizza_save_taxonomy_custom_meta_field($term_id) {
+    if (isset($_POST['term_meta'])) {
+
+        $t_id = $term_id;
+        $term_meta = get_option("taxonomy_$t_id");
+        $cat_keys = array_keys($_POST['term_meta']);
+        foreach ($cat_keys as $key) {
+            if (isset($_POST['term_meta'][$key])) {
+                $term_meta[$key] = $_POST['term_meta'][$key];
+            }
+        }
+        // Save the option array.
+        update_option("taxonomy_$t_id", $term_meta);
     }
 }

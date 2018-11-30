@@ -15,6 +15,9 @@ include plugin_dir_path(__FILE__) . 'includes/dro-posttype-menu.php';
 include plugin_dir_path(__FILE__) . 'includes/class-dro-posttype.php';
 include plugin_dir_path(__FILE__) . 'includes/class-dro-taxonomies.php';
 include plugin_dir_path(__FILE__) . 'includes/class-dro-metaboxes.php';
+include plugin_dir_path(__FILE__) . 'includes/class-showcase-taxonomy-images.php';
+include plugin_dir_path(__FILE__) . 'includes/class-showcase-taxonomy-images-type-menu.php';
+include plugin_dir_path(__FILE__) . 'alan-pizza-options/theme-options-plus.php';
 
 
 /**
@@ -22,6 +25,9 @@ include plugin_dir_path(__FILE__) . 'includes/class-dro-metaboxes.php';
  */
 add_action('init', function() {
 
+    /**
+     * Global variabl Array
+     */
     global $posttypes, $taxonomies;
 
     /**
@@ -37,13 +43,24 @@ add_action('init', function() {
     $dro_taxonomies->create_taxanomies();
 
     /**
-     * Create custom filed : price  for type_menu taxonomy 
+     * Add custom taxonomy filed : price  for type_menu taxonomy 
      */
     add_action('type_menu_add_form_fields', 'dro_alan_pizza_taxonomy_add_custom_meta_field', 10, 2);
     add_action('type_menu_edit_form_fields', 'dro_alan_pizza_taxonomy_edit_custom_meta_field', 10, 2);
     add_action('edited_type_menu', 'dro_alan_pizza_save_taxonomy_custom_meta_field', 10, 2);
     add_action('create_type_menu', 'dro_alan_pizza_save_taxonomy_custom_meta_field', 10, 2);
 
+    /**
+     * Add image upload for type_pizza taxonomy
+     */
+    $Showcase_Taxonomy_Images = new Showcase_Taxonomy_Images();
+    $Showcase_Taxonomy_Images->init();
+    
+    /**
+     * Add image upload for type_menu taxonomy
+     */
+    $Showcase_Taxonomy_Images_Type_Menu = new Showcase_Taxonomy_Images_Type_Menu();
+    $Showcase_Taxonomy_Images_Type_Menu->init();    
 
     /**
      * Add Custom Post Type columns for Pizza Screen Edit 
@@ -102,7 +119,7 @@ function wpse22764_gettext($translation, $original) {
     } else {
         $pos = strpos($original, 'Excerpts are optional hand-crafted summaries of your');
         if ($pos !== false) {
-            return 'Ingrédients';
+            return 'mettez un espace aprés chaque virgule';
         }
     }
     return $translation;

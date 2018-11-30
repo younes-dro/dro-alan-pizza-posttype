@@ -26,12 +26,12 @@ $menu_options = array(
     'labels' => $menu_labels,
     'description' => 'Holds our Menus and menu specific data',
     'public' => true,
-    'menu_position' => 5,
+//    'menu_position' => 5,
     'menu_icon' => dirname(plugin_dir_url(__FILE__)).'/assets/images/icons8-meal-48.png',
     'supports' => array('title', 'excerpt', 'thumbnail'),
     'has_archive' => true,
     'rewrite' => array(
-        'slug' => 'menu-alan-pizza-vaureal'
+        'slug' => 'rapido-vaureal'
     )
 );
 

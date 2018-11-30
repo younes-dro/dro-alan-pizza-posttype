@@ -32,7 +32,7 @@ $pizza_options = array(
     'labels' => $pizza_labels,
     'description' => 'Holds our pizzas and pizza specific data',
     'public' => true,
-    'menu_position' => 5,
+//    'menu_position' => 1,
     'menu_icon' => dirname(plugin_dir_url(__FILE__)).'/assets/images/pizza_16.png',
     'supports' => array('title', 'excerpt', 'thumbnail'),
     'has_archive' => true,
@@ -78,7 +78,7 @@ $taxonomies['type_pizza'] = array(
     'options' => array(
         'labels' => $pizza_type,
         'hierarchical' => true,
-        'rewrite'      => array('slug' => 'carte-pizza', 'with_front' => false)
+        'rewrite'      => array('slug' => 'carte-pizza-vaureal', 'with_front' => false)
     ),
 );
 

@@ -12,11 +12,13 @@
 
 include plugin_dir_path(__FILE__) . 'includes/dro-posttype-pizza.php';
 include plugin_dir_path(__FILE__) . 'includes/dro-posttype-menu.php';
+include plugin_dir_path(__FILE__) . 'includes/dro-posttype-after-meal.php';
 include plugin_dir_path(__FILE__) . 'includes/class-dro-posttype.php';
 include plugin_dir_path(__FILE__) . 'includes/class-dro-taxonomies.php';
 include plugin_dir_path(__FILE__) . 'includes/class-dro-metaboxes.php';
 include plugin_dir_path(__FILE__) . 'includes/class-showcase-taxonomy-images.php';
 include plugin_dir_path(__FILE__) . 'includes/class-showcase-taxonomy-images-type-menu.php';
+include plugin_dir_path(__FILE__) . 'includes/class-showcase-taxonomy-images-apres-repas.php';
 include plugin_dir_path(__FILE__) . 'alan-pizza-options/theme-options-plus.php';
 
 
@@ -60,7 +62,13 @@ add_action('init', function() {
      * Add image upload for type_menu taxonomy
      */
     $Showcase_Taxonomy_Images_Type_Menu = new Showcase_Taxonomy_Images_Type_Menu();
-    $Showcase_Taxonomy_Images_Type_Menu->init();    
+    $Showcase_Taxonomy_Images_Type_Menu->init();
+    
+    /**
+     * Add image upload for apres_repas taxonomy
+     */
+    $Showcase_Taxonomy_Images_Apres_Repas = new Showcase_Taxonomy_Images_Apres_Repas();
+    $Showcase_Taxonomy_Images_Apres_Repas->init(); 
 
     /**
      * Add Custom Post Type columns for Pizza Screen Edit 

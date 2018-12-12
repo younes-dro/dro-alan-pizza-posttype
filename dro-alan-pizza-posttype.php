@@ -75,10 +75,8 @@ add_action('init', function() {
      */
     add_filter('manage_edit-pizza_columns', function($pizza_columns) {
         $pizza_columns['type_pizza'] = __('Type de Pizza');
-        $pizza_columns['prices'] = __('Prix');
-
-
-        $pizza_columns['promo'] = __('Pomo');
+//        $pizza_columns['prices'] = __('Prix');
+//        $pizza_columns['promo'] = __('Pomo');
 
         return $pizza_columns;
     });

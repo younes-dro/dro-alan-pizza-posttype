@@ -3,6 +3,7 @@
 include plugin_dir_path(__FILE__). 'meta-boxes-prices/prices.php';
 include plugin_dir_path(__FILE__). 'meta-boxes-prices/promo.php';
 include plugin_dir_path(__FILE__). 'meta-boxes-prices/price_apres_repas.php';
+include plugin_dir_path(__FILE__). 'meta-boxes-prices/price_chiken_wings.php';
 
 /**
  * 

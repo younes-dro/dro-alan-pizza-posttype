@@ -31,7 +31,7 @@ $menu_options = array(
     'supports' => array('title', 'excerpt', 'thumbnail'),
     'has_archive' => true,
     'rewrite' => array(
-        'slug' => 'rapido-vaureal'
+        'slug' => 'carte-menu-vaureal'
     )
 );
 
@@ -71,7 +71,7 @@ $taxonomies['type_menu'] = array(
     'options' => array(
         'labels' => $menu_type,
         'hierarchical' => true,
-        'rewrite'      => array('slug' => 'menu-alan-pizza', 'with_front' => false)
+        'rewrite'      => array('slug' => 'menus-pizzeria-vaureal', 'with_front' => false)
     ),
 );
 

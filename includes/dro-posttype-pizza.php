@@ -37,7 +37,7 @@ $pizza_options = array(
     'supports' => array('title', 'excerpt', 'thumbnail'),
     'has_archive' => true,
     'rewrite' => array(
-        'slug' => 'pizza-rapide-vaureal'
+        'slug' => 'pizzas-a-vaureal'
     )
 );
 
@@ -78,7 +78,7 @@ $taxonomies['type_pizza'] = array(
     'options' => array(
         'labels' => $pizza_type,
         'hierarchical' => true,
-        'rewrite'      => array('slug' => 'carte-pizza-vaureal', 'with_front' => false)
+        'rewrite'      => array('slug' => 'pizza-vaureal-emporter-livraison', 'with_front' => false)
     ),
 );
 

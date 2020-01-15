@@ -20,7 +20,6 @@ include plugin_dir_path(__FILE__) . 'includes/class-showcase-taxonomy-images.php
 include plugin_dir_path(__FILE__) . 'includes/class-showcase-taxonomy-images-type-menu.php';
 include plugin_dir_path(__FILE__) . 'includes/class-showcase-taxonomy-images-apres-repas.php';
 include plugin_dir_path(__FILE__) . 'alan-pizza-options/theme-options-plus.php';
-include plugin_dir_path(__FILE__) . 'includes/class-ajaxed-type-pizza.php';
 
 
 /**
@@ -98,6 +97,7 @@ add_action('init', function() {
                     join $wpdb->terms t on t.term_id = tr.term_taxonomy_id 
                     where tr.object_id =" . $id;
                 $current_row = $wpdb->get_row($current_type_pizza, ARRAY_A);
+                echo "<input type='button' id='ala' value='clikc' />";
                 echo "<select name='type_pizza_select_$id' id='type_pizza_select_$id' class='widefat tax_type_pizza'>";
                 echo '<option disabled="disabled">-</option>';
                 foreach ($type_pizza_results as $key => $value) {
@@ -111,7 +111,7 @@ add_action('init', function() {
         }
     }
 
-    
+    add_action('admin_enqueue_scripts', 'dro_posttype_scripts');
     
     // Add Filter for posty_type pizza
     add_action( 'restrict_manage_posts', 'filter_pizza_by_taxonomies' , 10, 2);
@@ -134,7 +134,22 @@ function wpse22764_gettext($translation, $original) {
     return $translation;
 }
 
+/**
+ * Enqueueing JS and CSS
+ */
+function dro_posttype_scripts($hook) {
 
+    $screen = get_current_screen();
+    if ($hook == 'post-new.php' || $hook == 'post.php' || $hook == 'edit.php') {
+
+
+        if ($screen->post_type === 'pizza') {
+            wp_enqueue_style('dro-posttype-css', plugins_url('assets/css/dro-posttype-css.css', __FILE__));
+            //js 
+            wp_enqueue_script('dro-posttype-js', plugins_url('assets/js/dro-posttype-js.js', __FILE__), array('jquery'));
+        }
+    }
+}
 
 /**
  * Callback functions for Custom Field Price for type_menu taxonomy

@@ -1,10 +1,12 @@
 (function ($) {
 
-console.log('alan pizza ajax  ');
+console.log('alan pizza ');
     /**
      * Update taxonomy Type Pizza
      */
-
+    $('#ala').click(function(){
+        alert(this);
+    });
 
     /**
      * Show / Hide promo fields text
